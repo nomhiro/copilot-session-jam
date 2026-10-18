@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "copilot-session-dj",
+  "version": "0.1.0",
+  "description": "A local, playful Strudel soundtrack for Copilot sessions and subagents. Silent until you click.",
+  "author": {
+    "name": "nomhiro",
+    "url": "https://github.com/nomhiro"
+  },
+  "repository": "https://github.com/nomhiro/copilot-session-jam",
+  "homepage": "https://github.com/nomhiro/copilot-session-jam",
+  "license": "AGPL-3.0-or-later",
+  "keywords": [
+    "canvas",
+    "strudel",
+    "music",
+    "session",
+    "subagents",
+    "local-audio"
+  ],
+  "extensions": {
+    "com.github.copilot": {
+      "logo": "assets/preview.png"
+    }
+  }
+}

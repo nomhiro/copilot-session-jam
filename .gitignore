@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.artifacts/
+.playwright-mcp/
+.impeccable/hook.cache.json
+.github/extensions/copilot-session-dj/assets/strudel.bundle.mjs
+.github/extensions/copilot-session-dj/assets/assets/
+.github/extensions/copilot-session-dj/THIRD-PARTY-NOTICES

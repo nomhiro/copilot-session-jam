@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copilot Session DJ</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div class="language-picker"><label for="language">Language / 言語</label><select id="language"><option value="en">English</option><option value="ja">日本語</option></select></div>
+      <div class="title-row"><h1>Session<span>DJ</span><span class="title-star" aria-hidden="true">✳</span></h1><span class="edition">COPILOT<br>AFTER HOURS</span></div>
+      <p class="tagline">コードは任せた。選曲も任せろ。</p>
+    </header>
+
+    <section class="record-card" aria-labelledby="track-title">
+      <div class="record-label"><span id="mode-label">LIVE SESSION</span><span id="connection">接続中…</span></div>
+      <div class="record-layout">
+        <div class="turntable" aria-hidden="true">
+          <div class="deck-stamp">SESSION DRIVE / SYNTH ONLY</div>
+          <div class="record"><div class="record-center"><span>JAM<br>001</span></div></div>
+          <div class="tonearm"></div><span class="deck-speed">33⅓</span>
+        </div>
+        <div class="track-info">
+          <h2 id="track-title">Lo-fi Incident</h2>
+          <p id="scene-title">開店準備中</p>
+          <div class="track-meta"><span id="bpm">84 BPM</span><span>A MINOR</span><span id="audio-state">SILENT</span></div>
+          <div class="output-meter">
+            <div class="slider-label"><label for="master-level">MASTER OUT</label><output id="level-value">SILENT</output></div>
+            <meter id="master-level" min="-60" max="0" value="-60" aria-describedby="level-help">−60 dBFS以下</meter>
+            <p id="level-help" class="help">実音声のピーク / −60〜0 dBFS</p>
+          </div>
+        </div>
+      </div>
+      <p id="scene-description">観測開始前の状況は不明です。</p>
+      <div class="playback"><button id="start" class="primary" disabled aria-describedby="notice">DJ、スタート！</button><button id="stop" class="stop"><span aria-hidden="true">■ </span>いったんストップ</button></div>
+      <p id="notice" role="status">「DJ、スタート！」で音楽を再生します。自動では音は鳴りません。</p>
+      <p id="error" role="alert" hidden></p>
+    </section>
+
+    <section class="mixer" aria-labelledby="mixer-title">
+      <div class="section-heading"><h2 id="mixer-title">THE MIXER</h2><span>安全装置は常時ON</span></div>
+      <label for="preset">CRATE / 曲を選ぶ</label>
+      <select id="preset"><option value="lofi">Lo-fi Incident — 深夜のREADME喫茶</option><option value="synthwave">Merge After Dark — マージ前夜</option><option value="chiptune">8-bit Standup — 朝会は冒険の始まり</option></select>
+      <div class="channel-strips">
+      <div class="channel-strip">
+      <p class="channel-name">MASTER <span>音の大きさ</span></p>
+      <div class="slider-label"><label for="volume">音量</label><output for="volume" id="volume-value">22%</output></div>
+      <input type="range" id="volume" min="0" max="100" value="22" aria-describedby="volume-help">
+      <p id="volume-help" class="help">人数が増えても音量は上げません。</p>
+      </div>
+      <div class="channel-strip">
+      <p class="channel-name">CHAOS <span>編曲の遊び</span></p>
+      <div class="slider-label"><label for="mischief">悪ふざけ度</label><output for="mischief" id="mischief-value">55%</output></div>
+      <input type="range" id="mischief" min="0" max="100" value="55" aria-describedby="mischief-help">
+      <p id="mischief-help" class="help">社会性を保つ ← → セッションがフェスになる</p>
+      </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="band-title">
+      <div class="section-heading"><h2 id="band-title">SESSION BAND</h2><span id="certainty">観測開始前は不明</span></div>
+      <div class="members">
+        <div><span class="member-icon" aria-hidden="true">⌕</span><strong id="tools">0</strong><span>TOOLS</span></div>
+        <div><span class="member-icon" aria-hidden="true">♬</span><strong id="agents">0</strong><span>GUESTS</span></div>
+        <div><span class="member-icon" aria-hidden="true">◷</span><strong id="waiting">0</strong><span>WAITING</span></div>
+      </div>
+      <div class="slider-label"><label for="heat">フロア熱量</label><span id="heat-value">0 / 100</span></div>
+      <meter id="heat" min="0" max="100" value="0">0</meter>
+      <p class="help">演出用の指標です。あなたの生産性は採点しません。</p>
+      <p id="instruments">楽器: コード</p>
+      <p class="evidence">根拠: <code id="reason">observation-started</code></p>
+    </section>
+
+    <section class="soundcheck" aria-labelledby="soundcheck-title">
+      <div class="section-heading"><h2 id="soundcheck-title">SOUNDCHECK</h2><span>実ツールは動きません</span></div>
+      <label for="mode">演奏ソース</label>
+      <select id="mode"><option value="live">現在のセッション</option><option value="demo">架空セッションで試聴</option></select>
+      <div id="demo-controls" hidden>
+        <p class="help">DEMO専用の架空イベント。承認・実行・失敗を実際には起こしません。</p>
+        <div class="demo-buttons">
+          <button data-demo="working"><span aria-hidden="true">WORK</span>仕事してる感</button><button data-demo="band"><span aria-hidden="true">GUEST +3</span>3人増員</button><button data-demo="error"><span aria-hidden="true">TENSION</span>不穏にする</button><button data-demo="waiting"><span aria-hidden="true">HOLD</span>人類待ち</button><button data-demo="complete"><span aria-hidden="true">CHEERS</span>架空の乾杯</button><button data-demo="idle"><span aria-hidden="true">LOUNGE</span>喫茶に戻る</button>
+        </div>
+      </div>
+    </section>
+
+    <details>
+      <summary>今鳴らすStrudelコード / 観測状況</summary>
+      <p class="help">表示専用。会話本文やツール出力をコードとして実行しません。</p>
+      <button id="copy">コードをコピー</button>
+      <pre><code id="pattern"></code></pre>
+      <h2 class="small-heading">受信できたイベント</h2>
+      <p id="observed" class="help">まだありません。</p>
+      <p class="help">音声出力の目安: <output id="signal">無音</output></p>
+      <p id="storage" class="help"></p>
+    </details>
+    <footer>
+      <span>POWERED BY STRUDEL · SYNTHS ONLY</span>
+      <p>セッションの本文・コード・コマンドは収集しません。</p>
+      <a href="https://github.com/nomhiro/copilot-session-jam" target="_blank" rel="noreferrer">対応するソースとビルド手順</a>
+      <span> · </span><a href="LICENSE" target="_blank">AGPL-3.0-or-later</a>
+      <span> · </span><a href="THIRD-PARTY-NOTICES" target="_blank">音源・依存ライセンス</a>
+    </footer>
+  </main>
+</body>
+</html>

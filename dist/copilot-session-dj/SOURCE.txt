@@ -1,0 +1,9 @@
+The source/ directory contains this application, its tests, pinned dependencies and build scripts.
+From source/: npm ci --ignore-scripts && npm run build && npm test
+The Strudel browser bundle is an unmodified npm distribution.
+Its preferred source, build configuration and lockfile are available at the immutable upstream commit:
+https://codeberg.org/uzu/strudel/src/commit/f610965f4332837febe45743105da170e8b331ed
+https://codeberg.org/uzu/strudel/archive/f610965f4332837febe45743105da170e8b331ed.tar.gz
+See THIRD-PARTY-NOTICES for per-dependency source locations and licenses.
+A publisher must keep equivalent access to all corresponding source available with each release.
+Do not submit an unbuilt checkout to a marketplace: the plugin requires the generated local bundle.
